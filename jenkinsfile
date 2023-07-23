@@ -1,0 +1,20 @@
+node {
+	def buildNumber = BUILD_NUMBER
+		stage("CleanWS"){
+	    sh "rm -rf /var/lib/jenkins/workspace/Angular/angularjs-1/*"
+	}
+	stage("CheckOutCode"){
+		git url: 'https://github.com/raju1979/jenkins-test.git',branch: 'master'
+		echo "Repo Cloned"
+		}
+	stage("Install Node Modules"){
+		sh "npm install"
+	}
+
+
+
+	stage("Build"){
+		sh "npm run build --prod"
+	}
+	
+}
